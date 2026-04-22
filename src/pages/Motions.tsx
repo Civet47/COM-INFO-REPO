@@ -2,6 +2,7 @@ import React from 'react';
 import { Search, Filter, ChevronRight } from 'lucide-react';
 import { MOTIONS, Motion } from '../data/motions';
 import { cn } from '../utils';
+import { searchExternalMotions } from '../services/groqService';
 import ReactMarkdown from 'react-markdown';
 
 export function Motions() {
@@ -23,23 +24,11 @@ export function Motions() {
     setLoadingGlobal(true);
     setError(null);
     try {
-      // Check if we need to select an API key for search grounding
-      if (window.aistudio && !(await window.aistudio.hasSelectedApiKey())) {
-        await window.aistudio.openSelectKey();
-        // Assume success and proceed as per guidelines to avoid race condition
-      }
-
-      const { searchExternalMotions } = await import('../services/groqService');
       const result = await searchExternalMotions(search, deepSearch);
       setGlobalResults(result);
     } catch (err: any) {
-      console.error(err);
-      if (err.message?.includes("Requested entity was not found")) {
-        setError("Please select a valid paid API key to use the search grounding feature.");
-        if (window.aistudio) await window.aistudio.openSelectKey();
-      } else {
-        setError(err.message || 'An unexpected error occurred while searching external repositories.');
-      }
+      console.error('Global Search Error:', err);
+      setError(err.message || 'An unexpected error occurred while searching external repositories. Please check your GROQ_API_KEY.');
     } finally {
       setLoadingGlobal(false);
     }
@@ -190,9 +179,10 @@ export function Motions() {
           {/* Global Search Input */}
           <div className="bg-white p-8 border border-[#E7E5E4] rounded-3xl shadow-sm space-y-6">
             <div className="space-y-2">
-              <h3 className="text-xl font-bold">External Repository Search</h3>
+              <h3 className="text-xl font-bold">World Repository Search</h3>
               <p className="text-sm text-[#78716C]">
-                Search across Debatabase, HelloMotions, and other external repositories using AI.
+                Powered by <span className="font-bold text-brand-black">debatedata.io</span>. 
+                Search across the world's largest debate database using AI extraction.
               </p>
             </div>
             <div className="flex flex-col md:flex-row gap-4">

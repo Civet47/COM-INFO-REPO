@@ -7,6 +7,7 @@ import BPGuide from './components/BPGuide';
 import { Assistant } from './pages/Assistant';
 import { YoutubeAnalyzer } from './pages/YoutubeAnalyzer';
 import { CaseFiles } from './pages/CaseFiles';
+import { CaseConstruction } from './pages/CaseConstruction';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/motions" element={<Motions />} />
           <Route path="/case-files" element={<CaseFiles />} />
+          <Route path="/case-construction" element={<CaseConstruction />} />
           <Route path="/guides" element={<Guides />} />
           <Route path="/guides/bp" element={<BPGuide />} />
           <Route path="/assistant" element={<Assistant />} />

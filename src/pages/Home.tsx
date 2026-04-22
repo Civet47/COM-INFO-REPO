@@ -1,4 +1,4 @@
-import { Search, TrendingUp, BookOpen, MessageSquare, Sparkles } from 'lucide-react';
+import { Search, TrendingUp, BookOpen, MessageSquare, Hammer, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { MOTIONS } from '../data/motions';
 import { Logo } from '../components/Logo';
@@ -32,12 +32,18 @@ export function Home() {
       </section>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Link to="/motions" className="group p-8 bg-white border border-brand-black/5 rounded-3xl hover:border-brand-gold transition-all relative overflow-hidden shadow-sm">
           <div className="absolute top-0 right-0 w-24 h-24 bg-brand-gold/5 rounded-full -mr-8 -mt-8 transition-all group-hover:scale-110" />
           <Search className="w-8 h-8 mb-4 text-brand-black/30 group-hover:text-brand-gold transition-colors relative z-10" />
           <h3 className="text-xl font-black mb-2 relative z-10 uppercase tracking-tight">Browse Motions</h3>
           <p className="text-sm text-brand-black/60 relative z-10">Search through 1000+ motions from elite international tournaments.</p>
+        </Link>
+        <Link to="/case-construction" className="group p-8 bg-white border border-brand-black/5 rounded-3xl hover:border-brand-red transition-all relative overflow-hidden shadow-sm">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-brand-red/5 rounded-full -mr-8 -mt-8 transition-all group-hover:scale-110" />
+          <Hammer className="w-8 h-8 mb-4 text-brand-black/30 group-hover:text-brand-red transition-colors relative z-10" />
+          <h3 className="text-xl font-black mb-2 relative z-10 uppercase tracking-tight">Case Construction</h3>
+          <p className="text-sm text-brand-black/60 relative z-10">Access internal repositories for rebuttals, politics, and economics.</p>
         </Link>
         <Link to="/guides" className="group p-8 bg-white border border-brand-black/5 rounded-3xl hover:border-brand-blue transition-all relative overflow-hidden shadow-sm">
           <div className="absolute top-0 right-0 w-24 h-24 bg-brand-blue/5 rounded-full -mr-8 -mt-8 transition-all group-hover:scale-110" />

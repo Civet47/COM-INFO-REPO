@@ -40,6 +40,7 @@ export function CaseFiles() {
   const [globalSearch, setGlobalSearch] = React.useState('');
   const [globalResults, setGlobalResults] = React.useState<string | null>(null);
   const [loadingGlobal, setLoadingGlobal] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
   const [activeTab, setActiveTab] = React.useState<'Local' | 'Global'>('Local');
 
   // Form State
@@ -55,11 +56,13 @@ export function CaseFiles() {
   const handleGlobalSearch = async () => {
     if (!globalSearch.trim()) return;
     setLoadingGlobal(true);
+    setError(null);
     try {
       const result = await searchGlobalDebateRepository(globalSearch);
       setGlobalResults(result);
-    } catch (err) {
-      console.error(err);
+    } catch (err: any) {
+      console.error('Global Search Error:', err);
+      setError(err.message || 'An unexpected error occurred while searching external repositories. Please check your GROQ_API_KEY.');
     } finally {
       setLoadingGlobal(false);
     }
@@ -266,9 +269,11 @@ export function CaseFiles() {
           ) : (
             <div className="bg-white border border-[#E7E5E4] rounded-2xl p-6 space-y-4">
               <h3 className="font-bold flex items-center gap-2">
-                <Search className="w-4 h-4" /> Global Search
+                <Search className="w-4 h-4" /> Global Discovery
               </h3>
-              <p className="text-xs text-[#78716C]">Ground your research in deep internal AI analysis for world-class evidence digests.</p>
+              <p className="text-xs text-[#78716C]">
+                Ground your research in deep intelligence from <span className="font-bold text-brand-black">debatedata.io</span> and tournament databases.
+              </p>
               <div className="space-y-4">
                 <input 
                   type="text" 
@@ -293,6 +298,12 @@ export function CaseFiles() {
         <div className="lg:col-span-2">
           {activeTab === 'Global' ? (
             <div className="bg-white border border-[#E7E5E4] rounded-3xl p-8 shadow-sm min-h-[500px]">
+              {error && (
+                <div className="p-4 bg-red-50 border border-red-200 rounded-2xl text-red-700 text-sm mb-6">
+                  <p className="font-bold mb-1">Search Failed</p>
+                  {error}
+                </div>
+              )}
               {globalResults ? (
                 <div className="prose prose-stone max-w-none prose-sm">
                   <ReactMarkdown>{globalResults}</ReactMarkdown>

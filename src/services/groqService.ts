@@ -80,30 +80,34 @@ export async function groqChat(messages: { role: string; content: string }[]) {
 
 export async function searchGlobalDebateRepository(query: string) {
   const prompt = `You are an elite research assistant for world-class debate teams. 
-  Perform a deep internal analysis and provide a comprehensive debate digest for the following query: "${query}".
+  Perform a deep internal analysis and provide a comprehensive debate digest (Case File) for the following topic: "${query}".
   
-  Since you are a high-performance LLM, provide the most up-to-date arguments, statistics, and expert perspectives from your training data.
+  Leverage insights from leading repositories like debatedata.io and tournament archives.
   
   Structure your response with:
-  1. Key Arguments for both sides (Government/Proposition and Opposition).
-  2. Supporting Evidence (Identify specific statistics, quotes, or seminal research).
-  3. Evaluation of the strength of each piece of evidence (Strong, Weak, or Disputed).
-  4. Suggested Sources for further verification.
+  1. Motion Context (Status Quo).
+  2. Key Arguments for both sides (Government/Proposition and Opposition).
+  3. Supporting Evidence (Identify specific statistics, quotes, or seminal research).
+  4. Strategic Rebuttals and Clashes.
   
-  Format clearly using Markdown.`;
+  Format clearly using Markdown as a professional Case File.`;
 
   return generateGroqResponse(prompt);
 }
 
 export async function searchExternalMotions(query: string, deep: boolean = false) {
   const prompt = `Search for debate motions related to: "${query}". 
-  Focus on the most common and high-quality motions from major tournaments (WSDC, WUDC, BP, etc.).
+  Primary source: debatedata.io.
+  Focus on high-quality motions from major tournaments (WSDC, WUDC, BP, EUDC, etc.).
   ${deep ? "Perform an extremely detailed search, providing context, years, and specific tournament names where possible." : ""}
   
   Return a list of motions found, including:
-  - The motion text
-  - The tournament and year (if available)
-  - The source context`;
+  - The exact motion text
+  - The tournament and year
+  - Source (prefer debatedata.io where available)
+  - Category and Format (BP/WSDC)
+  
+  Format as a clean Markdown list or table.`;
 
   return generateGroqResponse(prompt);
 }
