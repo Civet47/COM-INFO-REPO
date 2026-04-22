@@ -5,14 +5,12 @@ import { fileURLToPath } from "url";
 import { generateText } from 'ai';
 import { createAnthropic } from '@ai-sdk/anthropic';
 import dotenv from 'dotenv';
+import * as YoutubeTranscriptPkg from 'youtube-transcript';
+import Groq from "groq-sdk";
 
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-import { YoutubeTranscript } from 'youtube-transcript';
-import Groq from "groq-sdk";
+const YoutubeTranscript = (YoutubeTranscriptPkg as any).YoutubeTranscript || (YoutubeTranscriptPkg as any).default || YoutubeTranscriptPkg;
 
 async function startServer() {
   const app = express();
