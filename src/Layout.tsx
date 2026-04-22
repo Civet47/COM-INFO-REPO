@@ -3,8 +3,8 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BookOpen, Database, LayoutDashboard, Menu, MessageSquare, X, Youtube } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
-import { cn } from '../utils';
-import { Logo } from './Logo';
+import { cn } from './utils';
+import { Logo } from './components/Logo';
 
 const navItems = [
   { name: 'Dashboard', path: '/', icon: LayoutDashboard },

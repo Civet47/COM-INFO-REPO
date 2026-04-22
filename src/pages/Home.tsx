@@ -19,9 +19,6 @@ export function Home() {
               CLASH OF MINDS <br />
               <span className="text-brand-red">RESOURCE HUB.</span>
             </h1>
-            <p className="text-xl text-brand-black/60 max-w-xl font-medium">
-              The premier centralized repository for BP and WSDC excellence, powered by high-performance Llama AI.
-            </p>
           </div>
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
             <Link to="/motions" className="px-8 py-3 bg-brand-black text-white rounded-full font-bold hover:bg-brand-red transition-colors shadow-lg shadow-brand-black/10">
