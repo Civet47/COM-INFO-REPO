@@ -11,6 +11,9 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+import { YoutubeTranscript } from 'youtube-transcript';
+import Groq from "groq-sdk";
+
 async function startServer() {
   const app = express();
   const PORT = 3000;
@@ -22,9 +25,73 @@ async function startServer() {
     apiKey: process.env.ANTHROPIC_API_KEY,
   });
 
+  // Groq Setup
+  const groq = new Groq({
+    apiKey: process.env.GROQ_API_KEY,
+  });
+
   // API routes
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok" });
+  });
+
+  app.get("/api/youtube/transcript", async (req, res) => {
+    const videoId = req.query.videoId as string;
+    if (!videoId) {
+      return res.status(400).json({ error: "videoId is required" });
+    }
+
+    try {
+      const transcript = await YoutubeTranscript.fetchTranscript(videoId);
+      res.json(transcript);
+    } catch (error: any) {
+      console.error('YouTube Transcript Error:', error);
+      res.status(500).json({ error: error.message || "Failed to fetch transcript" });
+    }
+  });
+
+  app.post("/api/groq/chat", async (req, res) => {
+    const { messages, model } = req.body;
+    if (!messages || !Array.isArray(messages)) {
+      return res.status(400).json({ error: "messages array is required" });
+    }
+
+    try {
+      const chatCompletion = await groq.chat.completions.create({
+        messages,
+        model: model || "llama-3.3-70b-versatile",
+      });
+
+      res.json({ text: chatCompletion.choices[0]?.message?.content || "" });
+    } catch (error: any) {
+      console.error('Groq Chat Error:', error);
+      res.status(500).json({ error: error.message || "Failed to get response from Groq" });
+    }
+  });
+
+  app.post("/api/analyze-debate", async (req, res) => {
+    const { transcript } = req.body;
+    if (!transcript) {
+      return res.status(400).json({ error: "transcript is required" });
+    }
+
+    try {
+      const chatCompletion = await groq.chat.completions.create({
+        messages: [
+          { 
+            role: "system", 
+            content: "You are a debate adjudicator. Analyze the transcript of a competitive debate. Provide: 1. Motion. 2. Summary of each speaker. 3. Evaluation of key clashes. 4. Feedback on who likely won and why." 
+          },
+          { role: "user", content: `Analyze this transcript:\n\n${transcript.substring(0, 50000)}` }
+        ],
+        model: "llama-3.3-70b-versatile",
+      });
+
+      res.json({ analysis: chatCompletion.choices[0]?.message?.content || "" });
+    } catch (error: any) {
+      console.error('Groq Analysis Error:', error);
+      res.status(500).json({ error: error.message || "Failed to analyze debate" });
+    }
   });
 
   // User's requested implementation

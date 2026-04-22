@@ -1,9 +1,4 @@
-import Groq from "groq-sdk";
-
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY || "",
-  dangerouslyAllowBrowser: true // For client-side demos, but server-side is safer
-});
+import { MOTIONS } from '../data/motions';
 
 export async function generateGroqResponse(prompt: string, systemPrompt?: string) {
   try {
@@ -13,12 +8,19 @@ export async function generateGroqResponse(prompt: string, systemPrompt?: string
     }
     messages.push({ role: "user", content: prompt });
 
-    const chatCompletion = await groq.chat.completions.create({
-      messages,
-      model: "llama-3.3-70b-versatile",
+    const response = await fetch('/api/groq/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages })
     });
 
-    return chatCompletion.choices[0]?.message?.content || "";
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to get Groq response from server');
+    }
+
+    const data = await response.json();
+    return data.text;
   } catch (error) {
     console.error("Groq Analysis Error:", error);
     throw error;
@@ -27,15 +29,23 @@ export async function generateGroqResponse(prompt: string, systemPrompt?: string
 
 export async function groqChat(messages: { role: string; content: string }[]) {
   try {
-    const chatCompletion = await groq.chat.completions.create({
-      messages: [
-        { role: "system", content: "You are a world-class debate coach and research assistant. Help the user find motions, brainstorm arguments, and understand debate formats. Be concise, professional, and insightful." },
-        ...messages.map(m => ({ role: m.role as any, content: m.content }))
-      ],
-      model: "llama-3.3-70b-versatile",
+    const response = await fetch('/api/groq/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        messages: [
+          { role: "system", content: "You are a world-class debate coach and research assistant. Help the user find motions, brainstorm arguments, and understand debate formats. Be concise, professional, and insightful." },
+          ...messages
+        ]
+      })
     });
 
-    return { text: chatCompletion.choices[0]?.message?.content || "" };
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to get chat response from server');
+    }
+
+    return await response.json();
   } catch (error) {
     console.error("Groq Chat Error:", error);
     throw error;

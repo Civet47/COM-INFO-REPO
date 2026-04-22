@@ -1,6 +1,5 @@
 import React from 'react';
 import { Youtube, Search, Loader2, FileText, AlertCircle, Sparkles } from 'lucide-react';
-import { YoutubeTranscript } from 'youtube-transcript';
 import { analyzeDebateTranscript } from '../services/groqService';
 import ReactMarkdown from 'react-markdown';
 import { cn } from '../utils';
@@ -33,8 +32,15 @@ export function YoutubeAnalyzer() {
     setStatus('Fetching transcript...');
 
     try {
-      const transcriptData = await YoutubeTranscript.fetchTranscript(videoId);
-      const fullText = transcriptData.map(t => t.text).join(' ');
+      // Fetch via server-side proxy to avoid CORS issues
+      const response = await fetch(`/api/youtube/transcript?videoId=${videoId}`);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to fetch transcript from server');
+      }
+      
+      const transcriptData = await response.json();
+      const fullText = transcriptData.map((t: any) => t.text).join(' ');
       
       if (!fullText) {
         throw new Error('No transcript found for this video.');
