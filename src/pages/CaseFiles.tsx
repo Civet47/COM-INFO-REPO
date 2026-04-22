@@ -147,17 +147,17 @@ export function CaseFiles() {
     <div className="max-w-6xl mx-auto space-y-8 pb-20">
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div className="space-y-2">
-          <h1 className="text-4xl font-bold tracking-tight">Case Files & Evidence</h1>
-          <p className="text-[#78716C]">Management system for debate arguments and verified supporting evidence.</p>
+          <h1 className="text-4xl font-black uppercase tracking-tight text-brand-black">Case Files & Evidence</h1>
+          <p className="text-brand-black/40 font-medium tracking-tight">Management system for debate arguments and verified supporting evidence.</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <a 
             href="https://drive.google.com/drive/folders/15u1Af2YlyTkNqyNnhymkwgRNQuVcKB_h"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-4 py-3 bg-blue-50 text-blue-700 border border-blue-100 rounded-2xl font-bold hover:bg-blue-100 transition-all shadow-sm"
+            className="flex items-center justify-center gap-2 px-4 py-3 bg-brand-blue/10 text-brand-blue border border-brand-blue/20 rounded-2xl font-bold hover:bg-brand-blue/20 transition-all shadow-sm"
           >
-            <ExternalLink className="w-5 h-5 text-blue-600" />
+            <ExternalLink className="w-5 h-5 text-brand-blue" />
             Team Drive
           </a>
           <button 
@@ -168,10 +168,10 @@ export function CaseFiles() {
             }}
             className={cn(
               "flex items-center justify-center gap-2 px-6 py-3 rounded-2xl font-bold transition-all shadow-sm",
-              activeTab === 'Global' ? "bg-[#1C1917] text-white" : "bg-white border border-[#E7E5E4] text-[#78716C]"
+              activeTab === 'Global' ? "bg-brand-black text-white" : "bg-white border border-brand-black/5 text-brand-black/60"
             )}
           >
-            <Sparkles className="w-5 h-5" />
+            <Sparkles className="w-5 h-5 text-brand-gold" />
             Global Repository
           </button>
           <button 
@@ -179,27 +179,33 @@ export function CaseFiles() {
               setIsCreating(true);
               setActiveTab('Local');
             }}
-            className="flex items-center justify-center gap-2 px-6 py-3 bg-[#1C1917] text-white rounded-2xl font-bold hover:bg-[#44403C] transition-all shadow-sm"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-brand-black text-white rounded-2xl font-bold hover:bg-brand-red transition-all shadow-sm"
           >
-            <Plus className="w-5 h-5" />
+            <Plus className="w-5 h-5 text-brand-gold" />
             Create Case
           </button>
         </div>
       </header>
 
       {/* Tab Switcher */}
-      <div className="flex p-1 bg-[#E7E5E4] rounded-xl w-fit">
+      <div className="flex p-1 bg-brand-black/5 rounded-2xl w-fit">
         <button 
           onClick={() => setActiveTab('Local')}
-          className={cn("px-6 py-2 rounded-lg text-sm font-bold transition-all", activeTab === 'Local' ? "bg-white shadow-sm" : "text-[#78716C]")}
+          className={cn(
+            "px-6 py-2 rounded-xl text-sm font-black uppercase tracking-tight transition-all", 
+            activeTab === 'Local' ? "bg-brand-black text-white shadow-md" : "text-brand-black/40 hover:text-brand-black"
+          )}
         >
           My Evidence Hub
         </button>
         <button 
           onClick={() => setActiveTab('Global')}
-          className={cn("px-6 py-2 rounded-lg text-sm font-bold transition-all", activeTab === 'Global' ? "bg-white shadow-sm" : "text-[#78716C]")}
+          className={cn(
+            "px-6 py-2 rounded-xl text-sm font-black uppercase tracking-tight transition-all", 
+            activeTab === 'Global' ? "bg-brand-black text-white shadow-md text-white" : "text-brand-black/40 hover:text-brand-black"
+          )}
         >
-          Global Search
+          World Repository
         </button>
       </div>
 

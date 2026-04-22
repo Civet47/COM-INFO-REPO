@@ -64,21 +64,27 @@ export function Motions() {
   return (
     <div className="max-w-6xl mx-auto space-y-8">
       <header className="space-y-2">
-        <h1 className="text-4xl font-bold tracking-tight">Motions Database</h1>
-        <p className="text-[#78716C]">Search and filter through historical debate motions.</p>
+        <h1 className="text-4xl font-black uppercase tracking-tight text-brand-black">Motions Database</h1>
+        <p className="text-brand-black/40 font-medium">Search and filter through historical debate motions.</p>
       </header>
 
       {/* Tab Switcher */}
-      <div className="flex p-1 bg-[#E7E5E4] rounded-xl w-fit">
+      <div className="flex p-1 bg-brand-black/5 rounded-2xl w-fit">
         <button
           onClick={() => setActiveTab('Local')}
-          className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'Local' ? 'bg-white shadow-sm' : 'text-[#78716C] hover:text-[#1C1917]'}`}
+          className={cn(
+            "px-6 py-2 rounded-xl text-sm font-black uppercase tracking-tight transition-all",
+            activeTab === 'Local' ? "bg-brand-black text-white shadow-md" : "text-brand-black/40 hover:text-brand-black"
+          )}
         >
           Local Repository
         </button>
         <button
           onClick={() => setActiveTab('Global')}
-          className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'Global' ? 'bg-white shadow-sm' : 'text-[#78716C] hover:text-[#1C1917]'}`}
+          className={cn(
+            "px-6 py-2 rounded-xl text-sm font-black uppercase tracking-tight transition-all",
+            activeTab === 'Global' ? "bg-brand-black text-white shadow-md" : "text-brand-black/40 hover:text-brand-black"
+          )}
         >
           Global Search (AI)
         </button>
@@ -124,42 +130,42 @@ export function Motions() {
           </div>
 
           {/* Results Table */}
-          <div className="bg-white border border-[#E7E5E4] rounded-2xl overflow-hidden shadow-sm">
+          <div className="bg-white/80 backdrop-blur-md border border-brand-black/5 rounded-3xl overflow-hidden shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-[#E7E5E4] bg-[#FAFAF9]">
-                    <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[#78716C]">Motion</th>
-                    <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[#78716C] w-32">Format</th>
-                    <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[#78716C] w-40">Category</th>
-                    <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[#78716C] w-40">Tournament</th>
+                  <tr className="border-b border-brand-black/5 bg-brand-black/[0.02]">
+                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-brand-black/40">Motion</th>
+                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-brand-black/40 w-32">Format</th>
+                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-brand-black/40 w-40">Category</th>
+                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-brand-black/40 w-40">Tournament</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E7E5E4]">
+                <tbody className="divide-y divide-brand-black/5">
                   {filteredMotions.map((motion) => (
-                    <tr key={motion.id} className="hover:bg-[#FAFAF9] transition-colors group cursor-pointer">
+                    <tr key={motion.id} className="hover:bg-brand-black/[0.01] transition-colors group cursor-pointer">
                       <td className="px-6 py-6">
-                        <p className="text-sm font-medium leading-relaxed group-hover:text-[#1C1917] transition-colors">
+                        <p className="font-bold leading-relaxed text-brand-black group-hover:text-brand-red transition-colors">
                           {motion.text}
                         </p>
                       </td>
                       <td className="px-6 py-6">
                         <span className={cn(
-                          "px-2 py-1 rounded text-[10px] font-bold tracking-wider",
-                          motion.format === 'BP' ? "bg-blue-50 text-blue-700" : 
-                          motion.format === 'WSDC' ? "bg-green-50 text-green-700" : 
-                          "bg-purple-50 text-purple-700"
+                          "px-2 py-0.5 rounded text-[10px] font-black tracking-widest uppercase",
+                          motion.format === 'BP' ? "bg-brand-blue text-white" : 
+                          motion.format === 'WSDC' ? "bg-brand-red text-white" : 
+                          "bg-brand-gold text-brand-black"
                         )}>
                           {motion.format}
                         </span>
                       </td>
                       <td className="px-6 py-6">
-                        <span className="text-xs text-[#78716C]">{motion.category}</span>
+                        <span className="text-xs font-bold text-brand-black/40 uppercase tracking-wider">{motion.category}</span>
                       </td>
                       <td className="px-6 py-6">
                         <div className="flex flex-col">
-                          <span className="text-xs font-bold text-[#1C1917]">{motion.tournament}</span>
-                          <span className="text-[10px] text-[#A8A29E]">{motion.year}</span>
+                          <span className="text-xs font-black text-brand-black uppercase tracking-tight">{motion.tournament}</span>
+                          <span className="text-[10px] font-bold text-brand-black/20">{motion.year}</span>
                         </div>
                       </td>
                     </tr>
