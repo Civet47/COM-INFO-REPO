@@ -1,6 +1,7 @@
 import React from 'react';
-import { BookOpen, Users, Clock, Scale, Info } from 'lucide-react';
-import { explainFormat } from '../services/geminiService';
+import { BookOpen, Users, Clock, Scale, Info, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { explainFormat } from '../services/groqService';
 import ReactMarkdown from 'react-markdown';
 
 export function Guides() {
@@ -98,6 +99,19 @@ export function Guides() {
               </div>
             </div>
           </div>
+
+          {activeTab === 'BP' && (
+            <Link 
+              to="/guides/bp"
+              className="flex items-center justify-between p-6 bg-orange-500 text-white rounded-2xl font-bold hover:bg-orange-600 transition-all group"
+            >
+              <div className="flex items-center gap-3">
+                <BookOpen className="w-6 h-6" />
+                <span>View Advanced BP Judging Guide</span>
+              </div>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          )}
 
           <button
             onClick={() => fetchAiExplanation(formatNames[activeTab])}

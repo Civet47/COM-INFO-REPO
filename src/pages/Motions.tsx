@@ -12,6 +12,8 @@ export function Motions() {
   const [activeTab, setActiveTab] = React.useState<'Local' | 'Global'>('Local');
   const [globalResults, setGlobalResults] = React.useState<string | null>(null);
   const [loadingGlobal, setLoadingGlobal] = React.useState(false);
+  const [deepSearch, setDeepSearch] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
 
   const categories = ['All', ...new Set(MOTIONS.map(m => m.category))];
   const formats = ['All', 'BP', 'WSDC'];
@@ -19,12 +21,25 @@ export function Motions() {
   const handleGlobalSearch = async () => {
     if (!search.trim()) return;
     setLoadingGlobal(true);
+    setError(null);
     try {
-      const { searchExternalMotions } = await import('../services/geminiService');
-      const result = await searchExternalMotions(search);
+      // Check if we need to select an API key for search grounding
+      if (window.aistudio && !(await window.aistudio.hasSelectedApiKey())) {
+        await window.aistudio.openSelectKey();
+        // Assume success and proceed as per guidelines to avoid race condition
+      }
+
+      const { searchExternalMotions } = await import('../services/groqService');
+      const result = await searchExternalMotions(search, deepSearch);
       setGlobalResults(result);
-    } catch (error) {
-      console.error(error);
+    } catch (err: any) {
+      console.error(err);
+      if (err.message?.includes("Requested entity was not found")) {
+        setError("Please select a valid paid API key to use the search grounding feature.");
+        if (window.aistudio) await window.aistudio.openSelectKey();
+      } else {
+        setError(err.message || 'An unexpected error occurred while searching external repositories.');
+      }
     } finally {
       setLoadingGlobal(false);
     }
@@ -189,10 +204,35 @@ export function Motions() {
                 {loadingGlobal ? 'Searching...' : 'Search Repositories'}
               </button>
             </div>
+            <div className="flex items-center gap-3 pt-2">
+              <button
+                onClick={() => setDeepSearch(!deepSearch)}
+                className={cn(
+                  "w-12 h-6 rounded-full transition-colors relative",
+                  deepSearch ? "bg-[#1C1917]" : "bg-[#E7E5E4]"
+                )}
+              >
+                <div className={cn(
+                  "absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform",
+                  deepSearch ? "translate-x-6" : "translate-x-0"
+                )} />
+              </button>
+              <div className="flex flex-col">
+                <span className="text-sm font-bold">Deep Search (High Thinking)</span>
+                <span className="text-[10px] text-[#78716C]">Uses advanced reasoning for more thorough results. Requires a paid API key.</span>
+              </div>
+            </div>
           </div>
 
           {/* Global Results */}
-          <div className="bg-white border border-[#E7E5E4] rounded-3xl p-8 min-h-[400px]">
+          <div className="bg-white border border-[#E7E5E4] rounded-3xl p-8 min-h-[400px] space-y-6">
+            {error && (
+              <div className="p-4 bg-red-50 border border-red-200 rounded-2xl text-red-700 text-sm">
+                <p className="font-bold mb-1">Search Failed</p>
+                {error}
+              </div>
+            )}
+            
             {globalResults ? (
               <div className="prose prose-stone max-w-none">
                 <ReactMarkdown>{globalResults}</ReactMarkdown>

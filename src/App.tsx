@@ -3,6 +3,7 @@ import { Layout } from './components/Layout';
 import { Home } from './pages/Home';
 import { Motions } from './pages/Motions';
 import { Guides } from './pages/Guides';
+import BPGuide from './components/BPGuide';
 import { Assistant } from './pages/Assistant';
 import { YoutubeAnalyzer } from './pages/YoutubeAnalyzer';
 import { CaseFiles } from './pages/CaseFiles';
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/motions" element={<Motions />} />
           <Route path="/case-files" element={<CaseFiles />} />
           <Route path="/guides" element={<Guides />} />
+          <Route path="/guides/bp" element={<BPGuide />} />
           <Route path="/assistant" element={<Assistant />} />
           <Route path="/youtube" element={<YoutubeAnalyzer />} />
         </Routes>

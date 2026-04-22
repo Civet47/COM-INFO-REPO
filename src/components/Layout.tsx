@@ -1,8 +1,9 @@
+import { AnimatePresence, motion } from 'motion/react';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Database, BookOpen, MessageSquare, Menu, X, Youtube } from 'lucide-react';
+import { BookOpen, Database, LayoutDashboard, Menu, MessageSquare, X, Youtube } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 import { cn } from '../utils';
-import { motion, AnimatePresence } from 'motion/react';
 
 const navItems = [
   { name: 'Dashboard', path: '/', icon: LayoutDashboard },
@@ -90,6 +91,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           {children}
         </motion.div>
       </main>
+      <Analytics />
     </div>
   );
 }

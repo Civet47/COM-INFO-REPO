@@ -1,7 +1,7 @@
 import React from 'react';
 import { Youtube, Search, Loader2, FileText, AlertCircle, Sparkles } from 'lucide-react';
 import { YoutubeTranscript } from 'youtube-transcript';
-import { analyzeDebateTranscript } from '../services/geminiService';
+import { analyzeDebateTranscript } from '../services/groqService';
 import ReactMarkdown from 'react-markdown';
 import { cn } from '../utils';
 
@@ -133,7 +133,7 @@ export function YoutubeAnalyzer() {
           <p className="text-sm font-bold text-blue-900">How it works</p>
           <p className="text-xs text-blue-800 leading-relaxed">
             This tool fetches the official or auto-generated captions from the YouTube video. 
-            It then uses Gemini AI to identify the motion, summarize each speaker (Prime Minister, Leader of Opposition, etc.), 
+            It then uses Llama AI to identify the motion, summarize each speaker (Prime Minister, Leader of Opposition, etc.), 
             and evaluate the technical quality of the debate. Note: Videos without captions cannot be analyzed.
           </p>
         </div>
