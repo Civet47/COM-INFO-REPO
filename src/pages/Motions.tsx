@@ -45,11 +45,15 @@ export function Motions() {
     }
   };
 
-  const filteredMotions = MOTIONS.filter(m => {
-    const matchesSearch = m.text.toLowerCase().includes(search.toLowerCase()) || 
-                         m.tournament?.toLowerCase().includes(search.toLowerCase());
+  const filteredMotions = (MOTIONS || []).filter(m => {
+    const searchTerm = (search || '').toLowerCase();
+    const textMatch = (m.text || '').toLowerCase().includes(searchTerm);
+    const tournamentMatch = (m.tournament || '').toLowerCase().includes(searchTerm);
+    
+    const matchesSearch = textMatch || tournamentMatch;
     const matchesFormat = selectedFormat === 'All' || m.format === selectedFormat || m.format === 'Both';
     const matchesCategory = selectedCategory === 'All' || m.category === selectedCategory;
+    
     return matchesSearch && matchesFormat && matchesCategory;
   }).sort((a, b) => {
     if (sortBy === 'year') {

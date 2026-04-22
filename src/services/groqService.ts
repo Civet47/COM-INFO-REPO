@@ -15,8 +15,22 @@ export async function generateGroqResponse(prompt: string, systemPrompt?: string
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || 'Failed to get Groq response from server');
+      let errorMessage = 'Failed to get Groq response from server';
+      try {
+        const errorData = await response.json();
+        errorMessage = errorData.error || errorMessage;
+      } catch (e) {
+        // If not JSON, try text as it might be an HTML error page
+        try {
+          const text = await response.text();
+          // Extract title or first bit of text if it's HTML
+          const match = text.match(/<title>(.*?)<\/title>/i);
+          errorMessage = match ? `Server Error: ${match[1]}` : (text.substring(0, 100) || errorMessage);
+        } catch (textErr) {
+          errorMessage = 'Server returned a non-JSON error response';
+        }
+      }
+      throw new Error(errorMessage);
     }
 
     const data = await response.json();
@@ -41,8 +55,20 @@ export async function groqChat(messages: { role: string; content: string }[]) {
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || 'Failed to get chat response from server');
+      let errorMessage = 'Failed to get chat response from server';
+      try {
+        const errorData = await response.json();
+        errorMessage = errorData.error || errorMessage;
+      } catch (e) {
+        try {
+          const text = await response.text();
+          const match = text.match(/<title>(.*?)<\/title>/i);
+          errorMessage = match ? `Server Error: ${match[1]}` : (text.substring(0, 100) || errorMessage);
+        } catch (textErr) {
+          errorMessage = 'Server returned a non-JSON error response';
+        }
+      }
+      throw new Error(errorMessage);
     }
 
     return await response.json();

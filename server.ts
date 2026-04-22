@@ -22,8 +22,12 @@ async function startServer() {
   });
 
   // Groq Setup
+  if (!process.env.GROQ_API_KEY) {
+    console.warn("WARNING: GROQ_API_KEY is not set. AI features requiring Groq will fail.");
+  }
+
   const groq = new Groq({
-    apiKey: process.env.GROQ_API_KEY,
+    apiKey: process.env.GROQ_API_KEY || "dummy_key", // Prevent crash on init if missing
   });
 
   // API routes
@@ -50,6 +54,10 @@ async function startServer() {
     const { messages, model } = req.body;
     if (!messages || !Array.isArray(messages)) {
       return res.status(400).json({ error: "messages array is required" });
+    }
+
+    if (!process.env.GROQ_API_KEY) {
+      return res.status(503).json({ error: "Groq API key is not configured on the server. Please add GROQ_API_KEY to your environment variables." });
     }
 
     try {
@@ -129,4 +137,7 @@ async function startServer() {
   });
 }
 
-startServer();
+startServer().catch(err => {
+  console.error("CRITICAL: Failed to start server:", err);
+  process.exit(1);
+});
