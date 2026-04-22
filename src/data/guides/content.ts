@@ -3,140 +3,237 @@ export interface GuideSection {
   title: string;
   description: string;
   content: string;
-  category: 'Strategic' | 'Matter' | 'Roles';
+  category: 'Strategic' | 'Matter' | 'Roles' | 'Analysis';
 }
 
 export const CASE_CONSTRUCTION_GUIDES: GuideSection[] = [
   {
-    id: 'rebuttals',
-    title: 'Rebuttal & Weighing',
-    description: 'Master the art of refutation and comparative weighing for Whips and Deputy speakers.',
+    id: 'rebuttals-expanded',
+    title: 'Advanced Rebuttal & Weighing',
+    description: 'Methodical refutation, meta-commentary, and the interactive weighing game.',
     category: 'Strategic',
     content: `
-# Rebuttal & Weighing Strategic Guide
+# Advanced Rebuttal & Weighing
 
-## The Rebuttal-Weighing Game
-To win high-level debate rounds, you must do more than just say the other side is wrong. You must explain *why* their arguments fail and *how* your arguments are more important.
+## 1. The Methodical Approach
+Rebuttal is not just saying "they are wrong." It is about proving it systematically.
 
-### Key Strategies for Refutation
-1. **Take the strongest version of their argument**: Don't attack a "straw man". Attack their best logic.
-2. **Explain why they are wrong (Rebuttal)**:
-   - **Analytic Gaps**: Point out where their logic leaps without sufficient reasoning.
-   - **Opposite Claim**: Prove that the inverse of their claim is actually true.
-   - **Meta-commentary**: Use framing and characterization to show their argument is irrelevant to the "Heart of the Debate".
+### Layers of Rebuttal
+1. **Analytic Gaps**: Point out where the other team's argument lacks a logical link.
+2. **Weak Points**: Attack the weakest part of their case (low probability/low impact).
+3. **Opposite Claim**: Proving the direct opposite of what they asserted.
+4. **Meta-commentary**: Framing the argument as irrelevant or secondary to your own.
 
-3. **Explain which is more important (Weighing)**:
-   - **Intensity of preference**: How much do people care about this?
-   - **Scope**: How many people are affected?
-   - **Probability**: How likely is this outcome compared to theirs?
-   - **Irreversibility**: Can the harm be undone?
+## 2. Competitive Weighing Game
+When both sides have good arguments, the judge needs to know why yours matters *more*.
+
+### Judging Metrics
+- **Intensity of preference**: Does this outcome affect a group that has no other choice?
+- **Scope vs. Severity**: Is it better to help 1 million people a little, or 100 people a lot?
+- **Probability**: How certain is your outcome compared to the other team's?
+- **Irreversibility**: Can the harm on the other side be fixed? If not (e.g., death), it weighs higher.
+
+## 3. Practice Exercise: Drugs Legalization
+**Argument**: "Legalizing drugs keeps young people out of the criminal justice system."
+- **Rebuttal**: "The black market won't disappear; it will shift to even more dangerous, unregulated substances where young people are still targeted, creating a dual-threat of law enforcement and cartel violence."
     `
   },
   {
-    id: 'deputy-speeches',
-    title: 'Deputy Speeches',
-    description: 'Guidelines for the DPM and DLO roles: Rebuilding, Completion, and Robustness.',
+    id: 'deputy-mastery',
+    title: 'Deputy Speech Mastery (DPM/DLO)',
+    description: 'Modular speech construction, bridging gaps, and the "Burn the Turf" strategy.',
     category: 'Roles',
     content: `
-# Mastering Deputy Speeches (DPM/DLO)
+# Deputy Speech Mastery
 
-## The Goal
-The primary goal of a Deputy speech is to **Win the Debate** by ensuring your Opening case is bulletproof before the Back Half teams speak.
+## 1. The Strategy: Win the Top Half
+Your job is to ensure that after your speech, the Opening half of the table is functionally decided in your favor.
 
-### Core Components
-1. **Rebuilding and Completion**:
-   - Address the rebuttals from the previous speaker.
-   - Bridge gaps your partner might have left.
-   - Add new reasons why key links in your case are true.
-2. **Rebuttal**:
-   - Generate multiple layers of rebuttal to the opposite Opening team.
-   - Exploit analytic gaps or weak points in their setup.
-3. **New Substantive**:
-   - Turn your rebuttals into new positive points for your side.
-   - "Burn the turf": Cover the most intuitive extensions to make it harder for your Closing team to take the credit.
+### Core Tasks
+- **Rebuilding**: Fix what the previous speaker broke. Focus on things your partner "didn't do enough."
+- **Completion**: Bridge logical gaps. If your partner gave a claim, provide the mechanization (the "how").
+- **Robustness**: Add new reasons why a key link is true.
 
-### Efficiency & Modules
-- Think of your speech in modules (e.g., "Rebuilding Case", "Interactive Rebuttal", "New Analysis").
-- Be methodical and clear when moving between modules.
+## 2. Modular Speech Design
+Don't write a linear script. Build your speech in **Modules**:
+1. **Interactive Rebuttal**: 1.5 - 2 mins addressing the direct clash.
+2. **Case Extension/Completion**: 3 - 4 mins deepening your own case.
+3. **Pre-emption**: 1 min anticipating what the Back Half might say.
+
+## 3. "Burning the Turf"
+Try to run the most intuitive "extensions" yourself. If you leave nothing obvious for your Closing team to say, they have to work significantly harder to beat you.
     `
   },
   {
-    id: 'politics',
-    title: 'Debating Politics',
-    description: 'Analysis of state power, incentives, and political processes.',
+    id: 'politics-deep-dive',
+    title: 'Politics & State Incentives',
+    description: 'State power principles, social contract issues, and technocratic vs. democratic models.',
     category: 'Matter',
     content: `
-# Debating Politics & State Power
+# Debating Politics: Incentives & Power
 
-## The State Power Principle
-The state has a monopoly on violence. Every action it takes is done through force or the threat of force. This infringes on individual autonomy and must be justified through **Consent** (Democracy/Social Contract).
+## 1. The State Power Principle
+Debates often boil down to: **Consent vs. Utility**.
+- **The Monopoly on Violence**: The state is the only actor allowed to use force. This is only legitimate if citizens **Consent** (Social Contract).
+- **Technocracy**: Decisions made by experts to maximize Utility. *Counter*: Experts don't know everyone's individual preferences.
 
-### Common Political Clashes
-- **Majoritarianism vs. Minority Rights**: Does a 51% vote justify harming a 1% minority?
-- **Public Choice Theory**: Most issues are decided by small interest groups, not the general public.
-- **Technocracy**: Decisions should be made by experts (Utilitarian metric) rather than popular vote.
+## 2. Analyzing Country Incentives
+- **Democracies**: Driven by the "Window of Opportunity" (trigger events) and electability. Voters often vote on *character* or *confirmation bias* rather than dry policy.
+- **Non-Democracies**: Fragile and unstable. Figureheads must keep **Oligarchs** happy (wealth/arms) and manage **Popular Sentiment** (bread and butter issues).
+- **The Revolving Door**: Officials moving between government and the private sector, maintaining power in "The Iron Triangle" (Congress, Bureaucracy, Interest Groups).
 
-### Analyzing Incentives
-- **Democracies**: Leaders are driven by electability, short-term economic cycles, and framing.
-- **Non-Democracies**: Power is often concentrated in figureheads/oligarchs. They are sensitive to "bread and butter" issues that could trigger popular dissent.
-- **The Iron Triangle**: The interaction between Congress, Bureaucracy, and Interest Groups that maintains power structures.
+## 3. Barriers to Voting
+One-person, one-vote? Consider:
+- **Lost Votes**: Gerrymandering and safe seats.
+- **Voter Apathy**: Lack of access to research or disillusionment with limited choices.
     `
   },
   {
-    id: 'economics',
+    id: 'economics-expanded',
     title: 'States & Monetary Policy',
-    description: 'Understanding inflation, recessions, and central bank responses.',
+    description: 'Inflation traps, recession responses, and central bank independence.',
     category: 'Matter',
     content: `
-# Economics Matter Guide
+# Economics: Monetary & Fiscal Policy
 
-## Monetary Supply Essentials
-- **Inflation**: Occurs when people have more money and want to buy more, causing production to increase and prices to rise. Target is usually 2%.
-- **Deflation**: A loss of confidence leads to a "deflationary spiral" where spending drops and unemployment rises.
+## 1. Monetary Supply Essentials
+- **Money's Value**: Not intrinsic, but derived from what it can purchase.
+- **Inflation**: People have more money -> demand increases -> production increases -> wages rise -> prices rise. 2% is a healthy target.
+- **Hyperinflation**: Rapid loss of value makes saving impossible.
 
-## Recessions & Responses
-1. **Recessions**: Periods of declining activity, often caused by financial crises, supply shocks, or natural disasters.
-2. **Government Responses**:
-   - **Bailouts**: State pays debt (risk of moral hazard).
-   - **Bail-ins**: Creditors cancel debt (risk of investor flight).
-   - **Fiscal Stimulus**: Lowering taxes or increasing investment.
-3. **Central Bank Responses**:
-   - **Quantitative Easing**: Buying bonds to influx cash.
-   - **Interest Rate Targeting**: Lowering rates to encourage borrowing.
+## 2. Responding to Recessions
+Recessions are declining economic activity tied to a lack of confidence.
 
-### Key Term: The Liquidity Trap
-When interest rates are so low that monetary policy becomes ineffective at stimulating the economy.
+### Fiscal Stimulus (Government)
+- **Bailouts**: Saving essential companies (Moral Hazard risk).
+- **Bail-ins**: Creditors cancel debt (Confidence loss risk).
+- **Multiplier Effect**: Money spent on low-income groups or public works tends to circulate more.
+
+### Monetary Stimulus (Central Bank)
+- **Quantitative Easing**: Cash influx by buying bonds.
+- **Interest Rate Targeting**: Lowering rates to encourage borrowing.
+- **The Liquidity Trap**: When interest rates hit zero and monetary policy becomes useless.
+
+## 3. Central Bank Independence
+- **Pro**: Technocratic decision-making prevents populists from printing money for short-term gain.
+- **Con**: Lacks democratic accountability; "Bankers, Bureaucrats, and Central Bank Politics."
     `
   },
   {
-    id: 'matter-file',
-    title: 'Vietnam WUDC Matter File',
-    description: 'Stock arguments on nationalization, currency, and international relations.',
+    id: 'vietnam-matter-file',
+    title: 'WUDC Matter Repository',
+    description: 'Deep file on nationalization, resource curse, and dollar hegemony.',
     category: 'Matter',
     content: `
-# Vietnam WUDC Matter Repository
+# WUDC Global Matter Repository
 
-## State Ownership & Nationalization
-**Case for Nationalization**:
-- Profit incentives raise prices and lower quality for essential services.
-- Natural monopolies (water, electricity) should be state-controlled to prevent "price gouging".
-- SOEs can act as vehicles for long-term development that private firms ignore.
+## 1. State Ownership & Privatization
+- **Natural Monopolies**: Industries like water/electricity have demand inelasticity. Private firms will "price gouge"; the state should control them.
+- **SOEs (State-Owned Enterprises)**: Often vectors for corruption/patronage, but can cross-subsidize losses to provide services to low-income areas.
+- **Privatization**: Signals fiscal discipline, attracts foreign investment, and removes "Soft Budget Constraints" (bloated administrative costs).
 
-**Case for Privatization**:
-- SOEs are often vectors for corruption and political patronage.
-- Private firms have better access to capital and international expertise.
-- Competition drives efficiency and innovation.
+## 2. The Resource Curse
+- **Dutch Disease**: Dominant export sector causes currency appreciation, killing other export industries.
+- **Rentier Effect**: State relies on "economic rents" (minerals) rather than taxes, making them detached from citizen accountability.
 
-## Currency & Dollar Hegemony
-- **Original Sin**: Developing nations are often forced to borrow in foreign currencies (USD/EUR).
-- **Dollar Hegemony**: 60% of international assets are in USD. This gives the US unique "Neo-colonial" power over global interest rates.
-- **Counterfactual**: SDR (Special Drawing Rights) or a basket of currencies could provide a more stable global alternative.
+## 3. Dollar Hegemony
+- **Original Sin**: Most developing nations cannot borrow in their own currency.
+- **Neo-colonialism**: US dollar dominance allows the US to export its inflation and manipulate global interest rates via the SWIFT system.
     `
   },
   {
-    id: 'bp-terms',
+    id: 'round-tests-1',
+    title: 'Motion Analysis: Rounds 1-4',
+    description: 'South African Exceptionalism, Crypto, Critical Minerals, CHAN Quotas.',
+    category: 'Analysis',
+    content: `
+# Topic Analysis: Rounds 1-4
+
+## Round 1: South African Exceptionalism
+**Motion**: THR the concept of "South African Exceptionalism."
+- **Gov**: Creates a superiority complex; distances SA from the continent; worsens xenophobia by framing migrants as "invaders."
+- **Opp**: Builds national pride/cohesion; motivates higher governance standards (people expect resilience); acknowledges a unique history (Apartheid struggle).
+
+## Round 2: Retail/Crypto Investing
+**Motion**: THO the rise of retail/crypto investing in Africa.
+- **Gov**: Expands financial inclusion (unbanked can invest); transforms paths for wealth-building; democratizes markets.
+- **Opp**: High rates of fraud/scams; speculative gambling mentality leads to personal harm; amateur participation destabilizes economies.
+
+## Round 3: Critical Minerals Cartel
+**Motion**: THBT African states should form a collective bargaining cartel for critical minerals (cobalt, lithium).
+- **Gov**: Dramatic increases global leverage; prevents "race-to-the-bottom" undercutting; forces technology transfers.
+- **Opp**: Likely to fail due to internal fragmentation (divergent national interests); may provoke retaliation from China/US/EU.
+
+## Round 4: AFCON Quota for Domestic Players
+**Motion**: THP replacing CHAN with a quota for domestic players at AFCON.
+- **Gov**: Gives domestic players visibility to scouts; strengthens domestic league investment.
+- **Opp**: Undermines meritocracy; CHAN is a specialized platform where they don't have to compete with diaspora superstars.
+    `
+  },
+  {
+    id: 'round-tests-2',
+    title: 'Motion Analysis: Rounds 5-8',
+    description: 'Gender Abolition, Franchise Cinema, Abraham Accords, Stimulus.',
+    category: 'Analysis',
+    content: `
+# Topic Analysis: Rounds 5-8
+
+## Round 5: Gender Abolitionism
+**Motion**: THBT the LGBTQ movement should adopt a gender-abolitionist vs. pluralist approach.
+- **Gov**: Eliminates hierarchy/binary; prevents commodification of identity; avoids the "perpetual label" conflict.
+- **Opp**: Erases historical identities; pluralism protects legal rights for marginalized groups; abolition may default to "male as neutral."
+
+## Round 6: Franchise Cinema (IP Dominance)
+**Motion**: THR the dominance of movies based on existing IPs.
+- **Gov**: Crowds out original storytelling; homogenizes global culture; restricts creative freedom for directors.
+- **Opp**: Reduces financial risk/stabilizes industry; allows for high-budget filmmaking not possible otherwise; fans enjoy immersive world-building.
+
+## Round 7: Abraham Accords & Saudi Arabia
+**Motion**: THS Saudi Arabia joining the Abraham Accords on condition of a two-state solution.
+- **Gov**: Forces Israel into a meaningful concession; provides real monitoring via USA/Saudi leverage.
+- **Opp**: Conditionality is impractical (Israel's domestic politics will block it); unconditional normalization lowers regional temperature better.
+
+## Round 8: Fiscal vs. Monetary Stimulus
+**Motion**: THBT fiscal stimulus is more effective than monetary stimulus in a recession.
+- **Gov**: Injects money directly (skips the banks); creates jobs immediately; targets vulnerable populations precisely.
+- **Opp**: Risks unsustainable debt; monetary stimulus is faster (Central Bank acts in hours); prevents political misallocation of funds.
+    `
+  },
+  {
+    id: 'round-tests-3',
+    title: 'Motion Analysis: Rounds 9-13',
+    description: 'Pascal\'s Wager, Global South Research, Legacy, ICJ Sudan, Waka-Trix.',
+    category: 'Analysis',
+    content: `
+# Topic Analysis: Rounds 9-13 (Higher-Thinking)
+
+## Round 9: Pascal's Wager (Agnostic perspective)
+- **Gov**: Infinite-upside logic; provides psychological comfort in uncertainty.
+- **Opp**: Instrumental belief is inauthentic (God won't be fooled); belief has real costs to autonomy and doubt.
+
+## Round 10: South-to-South Research
+- **Gov**: Aligns priorities with local needs; reduces dependency on Northern funding; avoids "Parachute Research."
+- **Opp**: Global North has advanced technology/funding; intellectual diversity from North-South links is vital.
+
+## Round 11: Leave a Legacy
+- **Gov**: Legacy expectations create immense well-being pressure; people neglect the present for future recognition.
+- **Opp**: Legacy motivates excellence; creates public goods (institutions/art) that outlast the individual.
+
+## Round 12: ICJ & Sudan
+**Motion**: THBT African states should withdraw recognition of ICJ jurisdiction.
+- **Gov**: ICJ structural bias (treaty loopholes for the powerful); withdrawal boosts African regional legal bodies.
+- **Opp**: Withdrawal weakens global accountability; ICJ has a track record of legitimate wins for African states.
+
+## Round 13 (Grand Finals): The Waka-Trix
+**Motion**: TH, as an average 20-year-old African person, would enter the Waka-Trix (un-colonized digital matrix).
+- **Gov**: Reset trajectory untouched by colonial distortion; eliminates intergenerational trauma; stable governance.
+- **Opp**: Self-annihilation (consciousness ends); real relationships have inherent value; Waka-Trix is not guaranteed utopia.
+    `
+  },
+  {
+    id: 'bp-glossary',
     title: 'BP Debate Glossary',
-    description: 'A comprehensive guide to British Parliamentary terminology, speaker roles, and judging concepts.',
+    description: 'Comprehensive guide to BP terminology, speaker roles, and judging concepts.',
     category: 'Roles',
     content: `
 # BP Debate Terms & Phrases
@@ -171,29 +268,50 @@ When interest rates are so low that monetary policy becomes ineffective at stimu
     `
   },
   {
-    id: 'paudc-2027',
-    title: 'PAUDC 2027 Tshwane',
-    description: 'Details for the Pan-African Universities Debating Championship 2027 in South Africa.',
+    id: 'paudc-2027-tshwane',
+    title: 'PAUDC 2027: Tshwane',
+    description: 'Vision and practical details for the upcoming Pan-African Championship.',
     category: 'Strategic',
     content: `
 # PAUDC 2027: Tshwane - "Where Vision Finds a Home"
 
-## Introduction
-The Pan-African Universities Debating Championship (PAUDC) 2027 will be hosted in the City of Tshwane, South Africa's administrative capital. This event serves as a prelude to the World Universities Debating Championship (WUDC) 2028.
-
 ## Tournament Vision
 1. **Elevate Competitive Excellence**: Uphold highest standards in adjudication and tabulation.
-2. **Expand Continental Participation**: Engage underrepresented regions through outreach.
+2. **Expand Continental Participation**: Engage underrepresented regions through intentional outreach.
 3. **Build Sustainable Capacity**: Develop operational frameworks that endure beyond the event.
 4. **Revive Dialogue as Civic Leadership**: Reinforce debate as a tool for democratic engagement.
 
 ## Host Institution: University of Pretoria Debate Union
-A vibrant community with a rich history, including the first all-women previously disadvantaged team to win SANUDC.
+The Union has built a strong reputation, proudly housing the first all-womenPreviously disadvantaged team to win SANUDC.
 
-## Practical Details
-- **Accommodation**: Participants will be housed in official residences of the University of Pretoria.
-- **Transport**: Secure transportation including the Gautrain, known for its high-tech surveillance.
-- **Socials**: Cultural Night, Ubuntu Night, Games Night, Karaoke, Amapiano Night, and Poolside Party.
+## Practical Logistics
+- **Accommodation**: Official residences of the University of Pretoria.
+- **Transportation**: Secure shuttles and the Gautrain network (1000+ CCTV cameras).
+- **Social Events**: Cultural & Ubuntu Night, Amapiano Party, Poolside socials.
+    `
+  },
+  {
+    id: 'logical-framework-kenya',
+    title: 'Logical Framework: Femicide Prevention',
+    description: 'A SMART approach to reducing femicide in Kenya through legal reform and victim support.',
+    category: 'Analysis',
+    content: `
+# Logical Framework: Addressing Femicide in Kenya
+
+## Project Objectives
+- **Goal**: To reduce the incidence of femicide in Kenya by strengthening legal frameworks and victim support systems.
+- **Indicator**: 30% reduction in reported cases by 2027; 60% public awareness.
+
+## Key Outputs
+1. **Legal Reform**: Drafting a femicide prevention Bill to be passed by 2026.
+2. **Enforcement**: 50% increase in convictions for femicide cases.
+3. **Victim Support**: Establishing at least 15 new women's shelters by 2027.
+
+## Risks & Mitigations
+- **Risk**: Cultural resistance to gender reforms.
+- **Mitigation**: Working with respected community leaders and school-based education programs.
+- **Risk**: Funding shortfalls for shelters.
+- **Mitigation**: Seeking governmental and NGO partnerships.
     `
   }
 ];

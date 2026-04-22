@@ -9,7 +9,7 @@ export function CaseConstruction() {
   const [selectedCategory, setSelectedCategory] = React.useState<string>('All');
   const [selectedGuide, setSelectedGuide] = React.useState<GuideSection | null>(null);
 
-  const categories = ['All', 'Strategic', 'Matter', 'Roles'];
+  const categories = ['All', 'Strategic', 'Matter', 'Roles', 'Analysis'];
 
   const filteredGuides = CASE_CONSTRUCTION_GUIDES.filter(guide => {
     const matchesSearch = guide.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
