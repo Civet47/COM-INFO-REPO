@@ -6,14 +6,9 @@ import { generateText } from 'ai';
 import { createAnthropic } from '@ai-sdk/anthropic';
 import dotenv from 'dotenv';
 import Groq from "groq-sdk";
-import { createRequire } from 'module';
-
-const require = createRequire(import.meta.url);
-const YoutubeTranscriptPkg = require('youtube-transcript');
+import { YoutubeTranscript } from 'youtube-transcript/dist/youtube-transcript.esm.js';
 
 dotenv.config();
-
-const YoutubeTranscript = YoutubeTranscriptPkg.YoutubeTranscript || YoutubeTranscriptPkg.default || YoutubeTranscriptPkg;
 
 async function startServer() {
   const app = express();
